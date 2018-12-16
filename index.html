@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rotating Button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik|Staatliches" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css" />
+    
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <h1>ROCK PAPER SCISSORS</h1>
+    
+    </header>
+
+    <!-- Gameplay section -->
+    <section id="game">
+
+        <!-- Player 1 box -->
+        <div class="player-box" id="player-1">
+            <div class="player-label">PLAYER 1</div>
+
+            <!-- Selectable player options displayed here -->
+            <div class="player-select-row">
+                <div class="player-select-icon">
+                    <img src="assets/images/rock.png" />
+                </div>
+
+                <div class="player-select-icon">
+                    <img src="assets/images/paper.png" />
+                </div>
+
+                <div class="player-select-icon">
+                    <img src="assets/images/scissors.png" />
+                </div>
+            </div>
+
+            <!-- Selected players appear here -->
+            <div class="player-select-result-row">
+
+                <div class="player-select-result-icon">
+                    <div class="player-select-result-icon-label">P1</div>
+                    <img src="assets/images/rock.png" />
+                </div>
+
+                <div class="player-select-result-icon">
+                    <div class="player-select-result-icon-label">P2</div>
+                    <img src="assets/images/paper.png" />
+                </div>
+                
+            </div>
+
+            <!-- Score appear here -->
+            <div class="game-score">
+                <h2>Score</h2>
+                    <p>P1 Wins: <span id="p1-score">2</span></p>
+                    <p>P2 Wins: <span id="p2-score">3</span></p>
+            </div>
+            
+        </div>
+
+        <!-- Chat box area-->
+        <div id="chat-area">
+
+            <!-- Chat screen -->
+            <div id="chat-box">
+                <p class="p1-chat-text">I am player 1.</p>
+                <p class="p2-chat-text">I am player 2.</p>
+                <p class="p2-chat-text">This is another text submission.</p>
+                <p class="p1-chat-text">Good job!</p>
+            </div>
+
+            <div id="chat-input-button">
+
+                <input type="text" id="chat-input" name="chat-input" />
+                <button id="chat-submit">Send</button>
+
+            </div>
+
+            <!-- Chat input -->
+
+        </div>
+
+        <!-- Player 2 box -->
+        <div class="player-box" id="player-2">
+
+            <div class="player-label">PLAYER 2</div>
+        
+            <!-- Selectable player options displayed here -->
+            <div class="player-select-row">
+                <div class="player-select-icon">
+                    <img src="assets/images/rock.png" />
+                </div>
+
+                <div class="player-select-icon">
+                    <img src="assets/images/paper.png" />
+                </div>
+                
+                <div class="player-select-icon">
+                    <img src="assets/images/scissors.png" />
+                </div>
+            </div>
+
+             <!-- Selected players appear here -->
+            <div class="player-select-result-row">
+
+                <div class="player-select-result-icon">
+                    <div class="player-select-result-icon-label">P1</div>
+                    <img src="assets/images/rock.png" />
+                </div>
+
+                <div class="player-select-result-icon">
+                    <div class="player-select-result-icon-label">P2</div>
+                    <img src="assets/images/paper.png" />
+                </div>
+                
+            </div>
+
+            <!-- Score appear here -->
+            <div class="game-score">
+                <h2>Score</h2>
+                    <p>P1 Wins: <span id="p1-score">2</span></p>
+                    <p>P2 Wins: <span id="p2-score">3</span></p>
+            </div>
+            
+        </div>
+
+    </section>
+    
+</body>
+</html>

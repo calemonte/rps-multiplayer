@@ -1,0 +1,216 @@
+/* 
+==================================
+General Styles
+==================================
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    /* display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: white;
+    font-family: 'Rubik',  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    font-size: 70px;
+    font-family: 'Staatliches', cursive;
+}
+
+/* 
+==================================
+Header Styles
+==================================
+*/
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto;
+    text-align: center;
+}
+
+/* 
+==================================
+Player Box Styles
+==================================
+*/
+
+#game {
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.player-box {
+    height: 370px;
+    width: 400px;
+    border: 3px solid black;
+    border-radius: 10px;
+    position: relative;
+}
+
+.player-label {
+    position: absolute;
+    top: -8%;
+    right: 35%;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    border-radius: 40px;
+    padding: 1em;
+}
+
+.player-select-row {
+    width: 95%;
+    margin: 3em auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.player-select-icon {
+    height: 80px;
+    width: 80px;
+}
+
+.player-select-icon:hover {
+    background-color: lightcoral;
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.player-select-icon img {
+    height: 100%;
+    width: 100%;
+}
+
+.player-select-result-row {
+    width: 80%;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.player-select-result-icon {
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+.player-select-result-icon-label {
+    position: absolute;
+    margin-bottom: 2em;
+    top: -20px;
+    right: 30%;
+}
+
+.player-select-result-icon img {
+    height: 100%;
+    width: 100%;
+}
+
+.game-score {
+    text-align: center;
+    font-size: 16px;
+}
+
+.game-score h2 {
+    font-size: 24px;
+    text-decoration: underline;
+    margin-bottom: 0.5em;
+}
+
+
+/* 
+==================================
+Chat Box Styles
+==================================
+*/
+
+#chat-area{
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+}
+
+#chat-box {
+    height: 70%;
+    width: 100%;
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    padding: 1em;
+    overflow: scroll;
+}
+
+.p1-chat-text {
+    color: white;
+    text-align: right;
+    margin: 0.2em auto;
+}
+
+.p2-chat-text {
+    color: rgb(255, 238, 0);
+    text-align: left;
+    margin: 0.2em auto;
+}
+
+#chat-input-button {
+    text-align: center;
+}
+
+#chat-input {
+    width: 80%;
+    margin: 1em auto;
+    padding: 0.5em;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+#chat-submit {
+    width: 15%;
+    margin: 1em auto;
+    padding: 0.5em;
+    background: none;
+    border: 2px solid black;
+}
+
+#chat-submit:hover {
+    cursor: pointer;
+    background: black;
+    color: white;
+}
+
+/* 
+==================================
+Media Queries
+==================================
+*/
+
+@media screen and (max-width: 1100px) {
+
+    #game {
+        flex-flow: column;
+    }
+
+    #player-2 {
+        margin-top: 3em;
+    }
+
+    #chat-area {
+        margin-top: 2em;
+        order: 3;
+    }
+
+};

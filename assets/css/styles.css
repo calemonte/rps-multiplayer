@@ -140,8 +140,9 @@ Chat Box Styles
 
 #chat-area{
     flex-direction: column;
-    height: 300px;
+    height: 400px;
     width: 300px;
+    margin-top: 2em;
 }
 
 #chat-box {

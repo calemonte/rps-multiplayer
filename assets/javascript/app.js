@@ -19,18 +19,23 @@ var messagesRef = database.ref("/messages");
 var player1MessagesRef = database.ref("messages/player-1");
 var player2MessagesRef = database.ref("messages/player-2");
 
-// IIFE that triggers check of local storage for a player id (if you don't have first player, then you have session storage set to second player). NOTE: This is definitely easily broken if you refresh a page. Goal is to 
-(function() {
+var player1Present = false;
+var player2Present = false;
 
-    if (sessionStorage.getItem("player") === "player1") {
-        sessionStorage.clear();
-        sessionStorage.setItem("player", "player2");
-    } else {
-        sessionStorage.setItem("player", "player1");
-    }
+// Anonymous function that fires after 500 millis (because we want to make sure Firebase has updated) and applies sessionstorage id based on player states.
+// function setID() {
+
+//     sessionStorage.clear();
+
+//     if (player1Present && !player2Present) {
+//         sessionStorage.setItem("player", "player1");
+//     } else if (player1Present && player2Present) {
+//         sessionStorage.setItem("player", "player2");
+//     } else {
+//         return;
+//     }
  
- })();
- 
+// };
 
 // Function for grabbing message input and sending to Firebase.
 function submitMessage(e) {
@@ -57,16 +62,14 @@ function renderChat(data) {
     var newP = $("<p>");
     var chatBox = $("#chat-box");
 
-    console.log(data.ref.parent.key);
-
     if (data.ref.parent.key === "player-1") {
-        console.log(data.val());
+        // console.log(data.val());
         newP
             .addClass("p1-chat-text")
             .text(data.val());
         chatBox.append(newP);
     } else if (data.ref.parent.key === "player-2") {
-        console.log(data.val());
+        // console.log(data.val());
         newP
             .addClass("p2-chat-text")
             .text(data.val());
@@ -142,15 +145,6 @@ player2Ref.on("value", renderWins);
 player1MessagesRef.on("child_added", renderChat);
 player2MessagesRef.on("child_added", renderChat);
 
-// function reduceCounter() {
-
-//     if (playerCounter !== 0) {
-//         playerCounter--;
-//     } 
-
-//     console.log("Disconnect now reads: " + playerCounter);
-// };
-
 // Listen for changes in client connection states.
 connectedRef.on("value", function(data) {
 
@@ -160,8 +154,6 @@ connectedRef.on("value", function(data) {
         // Add user to the connections list.
         var connected = connectionsRef.push(true);
         
-        // connected.push({timestamp: firebase.database.ServerValue.TIMESTAMP});
-
         // Remove user from the connection list on disconnect.
         connected.onDisconnect().remove();
 
@@ -169,28 +161,33 @@ connectedRef.on("value", function(data) {
 
 });
 
-// 
-// connectionsRef.on("value", function(data) {
+// Change player states to "true" based on the number of active connections.
+connectionsRef.on("value", function(data) {
 
-//     if (data.numChildren() === 1) {
-//         sessionStorage.setItem("player1", "true");
-//     } if (data.numChildren() ) {
+    console.log(data.val());
+    database.ref("players/player-1/connected").set("false");
+    database.ref("players/player-2/connected").set("false");
 
-//     }
+    if (data.numChildren() === 1) {
+        database.ref("players/player-1/connected").set("true");
+        player1Present = true; // SET THIS TO THE ACTUAL VALUE IN FIREBASE.
+    } else if (data.numChildren() === 2) {
+        database.ref("players/player-1/connected").set("true");
+        database.ref("players/player-2/connected").set("true");
+        player2Present = true; // SET THIS TO THE ACTUAL VALUE IN FIREBASE.
+    } else if (data.numChildren() > 2) {
+        return;
+    }
 
-// });
+    // Set the session stoarge based on presence.
+    if (player1Present && !player2Present) {
+        sessionStorage.setItem("player", "player1");
+    } else if (player1Present && player2Present && !sessionStorage.getItem("player")) {
+        sessionStorage.setItem("player", "player2");
+    } else {
+        return;
+    }
 
-//     // If they are connected..
-//     if (data.val()) {
-  
-//       // Add user to the connections list.
-//     //   if (database.ref("players/player-1/connected").val() === "false") {
-//     //     var con = database.ref("players/player-1/connected").set("true");
-//     //     console.log(con);
-//     //   }
-     
-  
-//       // Remove user from the connection list when they disconnect.
-//     //   con.onDisconnect().remove();
-//     }
-//   });
+});
+
+// setID();
